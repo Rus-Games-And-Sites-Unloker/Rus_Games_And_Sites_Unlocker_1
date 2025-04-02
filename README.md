@@ -1,14 +1,14 @@
-### Rus Games And Sites Unloсker
+### Rus Games And Sites Unloсker.
 
-*"Plug & Play"* обход блокировок сайтов, Discord и YouTube для Windows
+*"Plug & Play"* обход блокировок сайтов, Discord и YouTube для Windows.
 
 Вниимание: это первая версия проекта.
 
-Основано на https://github.com/Flowseal/zapret-discord-youtube
+Основано на https://github.com/Flowseal/zapret-discord-youtube.
 
 ### Отличия от оригинала:
 
-Содержит в себе Cleaner for Zapret для очистки от альтернативных версий https://topersoft.com/programs/zapretcleaner
+Содержит в себе Cleaner for Zapret для очистки от альтернативных версий https://topersoft.com/programs/zapretcleaner.
 
 Все старые Bat файлы немного скорректированы, но это позволило добавить "НАСТРОИТЬ список доменов.exe", для быстрого редактирования списка сайтов. Его я взял отсюда: https://github.com/therealsdy/DiscordFix.
 
