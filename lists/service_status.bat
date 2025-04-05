@@ -3,8 +3,10 @@ chcp 65001 > nul
 :: 65001 - UTF-8
 
 if "%~1"=="" (
+    echo Checking already running service instances, see services.msc for more info
     call :test_service zapret
     call :test_service WinDivert
+    echo Services status check complete!
     pause
 ) else (
     call :test_service "%~1" "soft"
@@ -22,7 +24,7 @@ set "ServiceStatus=%ServiceStatus: =%"
 
 if "%ServiceStatus%"=="RUNNING" (
     if "%~2"=="soft" (
-        echo "%ServiceName%" is ALREADY RUNNING as service! Use "serivce_remove.bat" first if you want to run standalone bat.
+        echo "%ServiceName%" is ALREADY RUNNING as service! Use "service_remove.bat" first if you want to run standalone bat.
         pause
     ) else (
         echo "%ServiceName%" service is RUNNING.
