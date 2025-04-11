@@ -15,9 +15,9 @@ if "%1"=="admin" (
 :: Main
 cd /d "%~dp0"
 set BIN_PATH=%~dp0bin\
+set LISTS_PATH=%~dp0lists\
 
 :: Checking for updates
-call check_updates.bat soft
 echo:
 
 :: Searching for .bat files in current folder, except files that start with "service"
@@ -25,7 +25,7 @@ echo Pick one of the options:
 set "count=0"
 for %%f in (*.bat) do (
     set "filename=%%~nxf"
-    if /i not "!filename:~0,7!"=="service" if /i not "!filename:~0,13!"=="check_updates" (
+    if /i not "!filename:~0,7!"=="service" if /i not "!filename:~0,13!"=="check_updates" if /i not "!filename:~0,17!"=="cloudflare_switch" (
         set /a count+=1
         echo !count!. %%f
         set "file!count!=%%f"
@@ -82,6 +82,8 @@ for /f "tokens=*" %%a in ('type "!selectedFile!"') do (
                         set "arg=\!QUOTE!@%~dp0!arg:~1!\!QUOTE!"
                     ) else if "!arg:~0,5!"=="%%BIN%%" (
                         set "arg=\!QUOTE!!BIN_PATH!!arg:~5!\!QUOTE!"
+                    ) else if "!arg:~0,7!"=="%%LISTS%%" (
+                        set "arg=\!QUOTE!!LISTS_PATH!!arg:~7!\!QUOTE!"
                     ) else (
                         set "arg=\!QUOTE!%~dp0!arg!\!QUOTE!"
                     )
