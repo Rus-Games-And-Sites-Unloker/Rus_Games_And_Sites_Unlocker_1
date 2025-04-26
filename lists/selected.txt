@@ -6,6 +6,7 @@ list-nnmclub.txt
 list-russia-blacklist.txt
 list-rutor.txt
 list-rutracker.txt
+list-soft.txt
 list-spotify.txt
 list-thepiratebay.txt
 list-tiktok.txt
