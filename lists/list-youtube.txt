@@ -63,3 +63,4 @@ cdn2.frankerfacez.com
 cdn.frankerfacez.com
 api.ffzap.com
 api.frankerfacez.com
+jnn-pa.googleapis.com
