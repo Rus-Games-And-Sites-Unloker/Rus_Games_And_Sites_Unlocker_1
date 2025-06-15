@@ -5,7 +5,7 @@ cd /d "%~dp0..\"
 set "BIN=%~dp0..\bin\"
 set "LISTS=%~dp0..\lists\"
 
-start "zapret: general (ALT6)" /min "%BIN%winws.exe" --wf-tcp=80,443 --wf-udp=443,50000-50099,0-65535 ^
+start "zapret: AltUlitimate (ALT6)" /min "%BIN%winws.exe" --wf-tcp=80,443 --wf-udp=443,50000-50099,0-65535 ^
 
 --comment Discord(Calls) --filter-udp=50000-50099 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=0x00 --dpi-desync-fake-stun=0x00 --dpi-desync-repeats=6 --new^
 
