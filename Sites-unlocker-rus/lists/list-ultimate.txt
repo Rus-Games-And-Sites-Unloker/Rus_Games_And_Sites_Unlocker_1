@@ -12,6 +12,7 @@ airhorn.solutions
 airhornbot.com
 bigbeans.solutions
 cdn.discordapp.com
+cloudflare-ech.com
 dis.gd
 discord-activities.com
 discord-attachments-uploads-prd.storage.googleapis.com
@@ -25,6 +26,7 @@ discord.gift
 discord.gifts
 discord.media
 discord.new
+discord.status
 discord.store
 discord.tools
 discordactivities.com
@@ -41,10 +43,10 @@ gateway.discord.gg
 hammerandchisel.ssl.zendesk.com
 images-ext-1.discordapp.net
 media.discordapp.net
+stable.dl2.discordapp.net
 watchanimeattheoffice.com
 www.discord.app
 www.discord.com
-stable.dl2.discordapp.net
 cloudflare-ech.com
 dis.gd
 discord-attachments-uploads-prd.storage.googleapis.com
