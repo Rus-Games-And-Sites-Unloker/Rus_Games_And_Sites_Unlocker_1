@@ -64,3 +64,6 @@ cdn.frankerfacez.com
 api.ffzap.com
 api.frankerfacez.com
 jnn-pa.googleapis.com
+yt3.ggpht.com
+yt4.ggpht.com
+yt3.googleusercontent.com
