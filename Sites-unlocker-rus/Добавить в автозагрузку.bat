@@ -40,19 +40,21 @@ echo 1. Install Service
 echo 2. Remove Services
 echo 3. Check Service Status
 echo 4. Run Diagnostics
-echo 5. Update ipset list
+::echo 5. Check Updates
 echo 6. Switch Game Filter (%GameFilterStatus%)
 echo 7. Switch ipset (%IPsetStatus%)
+echo 8. Update ipset list
 echo 0. Exit
-set /p menu_choice=Enter choice (0-7): 
+set /p menu_choice=Enter choice (0-8): 
 
 if "%menu_choice%"=="1" goto service_install
 if "%menu_choice%"=="2" goto service_remove
 if "%menu_choice%"=="3" goto service_status
 if "%menu_choice%"=="4" goto service_diagnostics
-if "%menu_choice%"=="5" goto ipset_update
+::if "%menu_choice%"=="5" goto service_check_updates
 if "%menu_choice%"=="6" goto game_switch
 if "%menu_choice%"=="7" goto ipset_switch
+if "%menu_choice%"=="8" goto ipset_update
 if "%menu_choice%"=="0" exit /b
 goto menu
 
@@ -240,6 +242,56 @@ sc start %SRVCNAME%
 
 pause
 goto menu
+
+
+:: CHECK UPDATES =======================
+:service_check_updates
+chcp 437 > nul
+cls
+
+:: Set current version and URLs
+set "GITHUB_VERSION_URL=https://raw.githubusercontent.com/Flowseal/zapret-discord-youtube/main/.service/version.txt"
+set "GITHUB_RELEASE_URL=https://github.com/Flowseal/zapret-discord-youtube/releases/tag/"
+set "GITHUB_DOWNLOAD_URL=https://github.com/Flowseal/zapret-discord-youtube/releases/latest/download/zapret-discord-youtube-"
+
+:: Get the latest version from GitHub
+for /f "delims=" %%A in ('powershell -command "(Invoke-WebRequest -Uri \"%GITHUB_VERSION_URL%\" -Headers @{\"Cache-Control\"=\"no-cache\"} -TimeoutSec 5).Content.Trim()" 2^>nul') do set "GITHUB_VERSION=%%A"
+
+:: Error handling
+if not defined GITHUB_VERSION (
+    echo Warning: failed to fetch the latest version. Check your internet connection. This warning does not affect the operation of zapret
+    pause
+    if "%1"=="soft" exit /b 
+    goto menu
+)
+
+:: Version comparison
+if "%LOCAL_VERSION%"=="%GITHUB_VERSION%" (
+    echo Latest version installed: %LOCAL_VERSION%
+    
+    if "%1"=="soft" exit /b
+    pause
+    goto menu
+) 
+
+echo New version available: %GITHUB_VERSION%
+echo Release page: %GITHUB_RELEASE_URL%%GITHUB_VERSION%
+
+set "CHOICE="
+set /p "CHOICE=Do you want to automatically download the new version? (Y/N) (default: Y) "
+if "%CHOICE%"=="" set "CHOICE=Y"
+if /i "%CHOICE%"=="y" set "CHOICE=Y"
+
+if /i "%CHOICE%"=="Y" (
+    echo Opening the download page...
+    start "" "%GITHUB_DOWNLOAD_URL%%GITHUB_VERSION%.rar"
+)
+
+
+if "%1"=="soft" exit /b
+pause
+goto menu
+
 
 :: DIAGNOSTICS =========================
 :service_diagnostics
