@@ -58,13 +58,12 @@ totalFilesProcessed = 0
 
 ' Обрабатываем каждый файл
 For i = 0 To fileCount - 1
+    ' Используем vbYesNo вместо vbYesNoCancel (убираем кнопку Отмена)
     answer = MsgBox("Добавить файл в объединенный список?" & vbCrLf & vbCrLf & _
                    "Файл: " & selectedFiles(i), _
-                   vbQuestion + vbYesNoCancel, "Подтверждение (" & (i+1) & "/" & fileCount & ")")
+                   vbQuestion + vbYesNo, "Подтверждение (" & (i+1) & "/" & fileCount & ")")
     
-    If answer = vbCancel Then
-        WScript.Quit
-    ElseIf answer = vbYes Then
+    If answer = vbYes Then
         ' Увеличиваем счетчик обработанных файлов
         totalFilesProcessed = totalFilesProcessed + 1
         
@@ -73,7 +72,7 @@ For i = 0 To fileCount - 1
         allLines = Split(file.ReadAll, vbNewLine)
         file.Close
         
-        ' Открываем файл для добавления (только один раз)
+        ' Открываем файл для добавления
         Set output = fso.OpenTextFile(listsPath & "\" & resultFile, 8, True)
         
         ' Обрабатываем каждую строку
@@ -109,3 +108,8 @@ stats = "Объединение файлов завершено!" & vbCrLf & _
         "- Уникальных строк добавлено: " & dict.Count
 
 MsgBox stats, vbInformation, "Результат работы"
+
+' Освобождаем ресурсы
+Set dict = Nothing
+Set fso = Nothing
+Set shell = Nothing
